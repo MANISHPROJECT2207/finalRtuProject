@@ -7,3 +7,9 @@ from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 from django.contrib import messages
 from manik.settings import BASE_DIR
+
+def about(request):
+    return render(request, 'about.html')
+
+def home(request):
+    return render(request, 'index.html')
