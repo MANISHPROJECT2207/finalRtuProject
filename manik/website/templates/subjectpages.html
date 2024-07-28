@@ -9,9 +9,9 @@
         <div class="sidebar-logo">
           <!-- Logo Header -->
           <div class="logo-header" data-background-color="dark">
-            <a href="index.html" class="logo">
+            <a href="{% url 'home' %}" class="logo">
               <img
-                src="img/kaiadmin/logo_light.svg"
+                src="{% static 'img/kaiadmin/logo_light.svg' %}"
                 alt="navbar brand"
                 class="navbar-brand"
                 height="20"
@@ -324,16 +324,14 @@
                 class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex"
               >
                 <div class="input-group">
-                  <div class="input-group-prepend">
-                    <button type="submit" class="btn btn-search pe-1">
-                      <i class="fa fa-search search-icon"></i>
-                    </button>
-                  </div>
-                  <input
-                    type="text"
-                    placeholder="Search ..."
-                    class="form-control"
-                  />
+                  <form method="get" action="{% url 'search' %}">
+                    <input type="text" placeholder="Search ..." class="form-control" name="query"/>
+                    <div class="input-group-prepend">
+                      <button type="submit" class="btn btn-search pe-1">
+                        <i class="fa fa-search search-icon"></i>
+                      </button>
+                    </div>
+                  </form>
                 </div>
               </nav>
 
@@ -393,7 +391,7 @@
                           <a href="#">
                             <div class="notif-img">
                               <img
-                                src="img/jm_denis.jpg"
+                                src="{% static 'img/jm_denis.jpg' %}"
                                 alt="Img Profile"
                               />
                             </div>
@@ -406,7 +404,7 @@
                           <a href="#">
                             <div class="notif-img">
                               <img
-                                src="img/chadengle.jpg"
+                                src="{% static 'img/chadengle.jpg' %}"
                                 alt="Img Profile"
                               />
                             </div>
@@ -620,14 +618,14 @@
                   >
                     <div class="avatar-sm">
                       <img
-                        src="img/profile.jpg"
+                        src="{% static 'img/profile.jpg' %}"
                         alt="..."
                         class="avatar-img rounded-circle"
                       />
                     </div>
                     <span class="profile-username">
                       <span class="op-7">Hi,</span>
-                      <span class="fw-bold">Hizrian</span>
+                      <span class="fw-bold">{{request.user}}</span>
                     </span>
                   </a>
                   <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -681,290 +679,9 @@
               It contains the youtube video lectures of the topics and as well as
               handwritten notes unit wise for all Yearss
             </h4>
-            <div
-              class="m-4"
-              style="background-color: rgb(32, 32, 32); border-radius: 0.5rem;"
-            >
-            <!-- progress bar  -->
-            <div class="progress" style="height: 4px; background-color: rgb(50, 50, 50);">
-              <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-      
-      
-      
-              <div
-                class="align-content-center p-2 px-3 idCheck"
-                style="color: rgb(238, 75, 43); border-radius: 0.5rem;cursor: pointer;"
-                onclick="faAngleChange(1)"
-                id="1"
-              >
-                Unit 1: Maths
-                <button class="btn btn-primary float-end mx-lg-2" style="border-color: rgb(50, 50, 50); border-radius: 0.5rem; height: 2.5rem; background-color: rgb(32, 32, 32);">
-                   <i class="fa fa-angle-down faAngle"></i>
-                </button>
-              </div>  
-              
-              <div class="mx-4 d-none show">
-                <div class="overflow-auto" style="border-radius: 20px;">
-                <table
-                  class="table table-bordered text-white"
-                  style="border-color: rgb(50, 50, 50); background-color: rgb(17, 17, 17);"
-                >
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">First</th>
-                      <th scope="col">Last</th>
-                      <th scope="col">Handle</th>
-                      <th scope="col">First</th>
-                      <th scope="col">Last</th>
-                      <th scope="col">Handle</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td colspan="2">Larry the Bird</td>
-                      <td>@twitter</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-      
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
           
-          <div
-              class="m-4"
-              id="2"
-              style="background-color: rgb(32, 32, 32); border-radius: 0.5rem;"
-            >
-            <div class="progress" style="height: 4px;  background-color: rgb(50, 50, 50);">
-              <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-              <div
-                class="align-content-center p-2 px-3 idCheck"
-                style="color: rgb(238, 75, 43); border-radius: 0.5rem;cursor: pointer;"
-                onclick="faAngleChange(2)"
-      
-              >
-                Unit 1: Maths
-                <button class="btn btn-primary float-end mx-lg-2" style="border-color: rgb(50, 50, 50); border-radius: 0.5rem; height: 2.5rem; background-color: rgb(32, 32, 32);">
-                   <i class="fa fa-angle-down faAngle"></i>
-                </button>
-              </div>  
-              
-              <div class="mx-4 d-none show">
-                <div class="overflow-auto" style="border-radius: 20px;">
-                <table
-                  class="table table-bordered text-white"
-                  style="border-color: rgb(50, 50, 50); background-color: rgb(17, 17, 17);"
-                >
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">First</th>
-                      <th scope="col">Last</th>
-                      <th scope="col">Handle</th>
-                      <th scope="col">First</th>
-                      <th scope="col">Last</th>
-                      <th scope="col">Handle</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td colspan="2">Larry the Bird</td>
-                      <td>@twitter</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-      
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <div
-              class="m-4"
-              id="3"
-              style="background-color: rgb(32, 32, 32); border-radius: 0.5rem;"
-            >
-            <div class="progress" style="height: 4px;  background-color: rgb(50, 50, 50);">
-              <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>   
-              <div
-                class="align-content-center p-2 px-3 idCheck"
-                style="color: rgb(238, 75, 43); border-radius: 0.5rem;cursor: pointer;"
-                onclick="faAngleChange(3)"
-      
-              >
-                Unit 1: Maths
-                <button class="btn btn-primary float-end mx-lg-2" style="border-color: rgb(50, 50, 50); border-radius: 0.5rem; height: 2.5rem; background-color: rgb(32, 32, 32);">
-                   <i class="fa fa-angle-down faAngle" ></i>
-                </button>
-              </div>  
-              
-              <div class="mx-4 d-none show">
-                <div class="overflow-auto" style="border-radius: 20px;">
-                <table
-                  class="table table-bordered text-white"
-                  style="border-color: rgb(50, 50, 50); background-color: rgb(17, 17, 17);"
-                >
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">First</th>
-                      <th scope="col">Last</th>
-                      <th scope="col">Handle</th>
-                      <th scope="col">First</th>
-                      <th scope="col">Last</th>
-                      <th scope="col">Handle</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td colspan="2">Larry the Bird</td>
-                      <td>@twitter</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-      
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <div
-              class="m-4"
-              id="3"
-              style="background-color: rgb(32, 32, 32); border-radius: 0.5rem;"
-            >
-            <div class="progress" style="height: 4px;  background-color: rgb(50, 50, 50);">
-              <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-              <div
-                class="align-content-center p-2 px-3 idCheck"
-                style="color: rgb(238, 75, 43); border-radius: 0.5rem;cursor: pointer;"
-                onclick="faAngleChange(3)"
-      
-              >
-                Unit 1: Maths
-                <button class="btn btn-primary float-end mx-lg-2" style="border-color: rgb(50, 50, 50); border-radius: 0.5rem; height: 2.5rem; background-color: rgb(32, 32, 32);">
-                   <i class="fa fa-angle-down faAngle"></i>
-                </button>
-              </div>  
-              
-              <div class="mx-4 d-none show">
-                <div class="overflow-auto" style="border-radius: 20px;">
-                <table
-                  class="table table-bordered text-white"
-                  style="border-color: rgb(50, 50, 50); background-color: rgb(17, 17, 17);"
-                >
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">First</th>
-                      <th scope="col">Last</th>
-                      <th scope="col">Handle</th>
-                      <th scope="col">First</th>
-                      <th scope="col">Last</th>
-                      <th scope="col">Handle</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td colspan="2">Larry the Bird</td>
-                      <td>@twitter</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-      
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+      {% if subjects %}
+          {% for subject in subjects %}
           <div
               class="m-4"
               id="3"
@@ -979,7 +696,7 @@
                 onclick="faAngleChange(3)"
       
               >
-                Unit 1: Maths
+                {{ subject.name }}
                 <button class="btn btn-primary float-end mx-lg-2" style="border-color: rgb(50, 50, 50); border-radius: 0.5rem; height: 2.5rem; background-color: rgb(32, 32, 32);">
                    <i class="fa fa-angle-down faAngle" ></i>
                 </button>
@@ -994,90 +711,74 @@
                   <thead>
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">First</th>
-                      <th scope="col">Last</th>
-                      <th scope="col">Handle</th>
-                      <th scope="col">First</th>
-                      <th scope="col">Last</th>
-                      <th scope="col">Handle</th>
+                      <th scope="col">title</th>
+                      <th scope="col">link</th>
+                      <th scope="col">description</th>
+                      <th scope="col">likes</th>
+                      <th scope="col">status</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td colspan="2">Larry the Bird</td>
-                      <td>@twitter</td>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-      
-                    </tr>
+                    {% for item in subject.items.all %}
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>{{item.title}}</td>
+                        <td>{{item.link}}</td>
+                        <td>{{item.description}}</td>
+                        <td>{{item.likes}}</td>
+                        <td>{{item.status}}</td>
+                      </tr>
+                    {% endfor %}
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
+          {% endfor %}
+        
+      {% endif %}
           </div>
         </body>
         
-        <!--  -->
 
         
       </div>
     </div>
     <!--   Core JS Files   -->
-    <script src="js/core/index.js"></script>
-    <script src="js/core/jquery-3.7.1.min.js"></script>
-    <script src="js/core/popper.min.js"></script>
-    <script src="js/core/bootstrap.min.js"></script>
+    <script src="{% static 'js/core/index.js' %}"></script>
+    <script src="{% static 'js/core/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'js/core/popper.min.js' %}"></script>
+    <script src="{% static 'js/core/bootstrap.min.js' %}"></script>
 
     <!-- jQuery Scrollbar -->
-    <script src="js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="{% static 'js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %}"></script>
 
     <!-- Chart JS -->
-    <script src="js/plugin/chart.js/chart.min.js"></script>
+    <script src="{% static 'js/plugin/chart.js/chart.min.js' %}"></script>
 
     <!-- jQuery Sparkline -->
-    <script src="js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+    <script src="{% static 'js/plugin/jquery.sparkline/jquery.sparkline.min.js' %}"></script>
 
     <!-- Chart Circle -->
-    <script src="js/plugin/chart-circle/circles.min.js"></script>
+    <script src="{% static 'js/plugin/chart-circle/circles.min.js' %}"></script>
 
     <!-- Datatables -->
-    <script src="js/plugin/datatables/datatables.min.js"></script>
+    <script src="{% static 'js/plugin/datatables/datatables.min.js' %}"></script>
 
     <!-- Bootstrap Notify -->
-    <script src="js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+    <script src="{% static 'js/plugin/bootstrap-notify/bootstrap-notify.min.js' %}"></script>
 
     <!-- jQuery Vector Maps -->
-    <script src="js/plugin/jsvectormap/jsvectormap.min.js"></script>
-    <script src="js/plugin/jsvectormap/world.js"></script>
+    <script src="{% static 'js/plugin/jsvectormap/jsvectormap.min.js' %}"></script>
+    <script src="{% static 'js/plugin/jsvectormap/world.js' %}"></script>
 
     <!-- Google Maps Plugin -->
-    <script src="js/plugin/gmaps/gmaps.js"></script>
+    <script src="{% static 'js/plugin/gmaps/gmaps.js' %}"></script>
 
     <!-- Sweet Alert -->
-    <script src="js/plugin/sweetalert/sweetalert.min.js"></script>
+    <script src="{% static 'js/plugin/sweetalert/sweetalert.min.js' %}"></script>
 
     <!-- Kaiadmin JS -->
-    <script src="js/kaiadmin.min.js"></script>
+    <script src="{% static 'js/kaiadmin.min.js' %}"></script>
 
 {% endblock %}
