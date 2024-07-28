@@ -24,7 +24,12 @@ def courses(request):
     return render(request, 'courses.html')
 
 def subjectpages(request):
-    return render(request, 'subjectpages.html')
+    items = Item.objects.all()
+    subjects = Subject.objects.all()
+    return render(request, 'subjectpages.html', {
+        'items' : items,
+        'subjects' : subjects
+    })
 
 def contact(request):
     return render(request, 'contact.html')
@@ -83,7 +88,7 @@ def search(request):
     if query:
         items = items.filter(Q(description__icontains=query) | Q(title__icontains=query))
         subjects = subjects.filter(Q(name__icontains=query) | Q(branch__icontains=query))
-    return render(request, 'search.html', {
+    return render(request, 'subjectpages.html', {
         'items': items,
         'subjects': subjects,
         'query': query,
