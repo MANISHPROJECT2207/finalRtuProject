@@ -115,3 +115,15 @@ def status_completed(request):
         return JsonResponse({'success': False, 'error': 'Item not found'})
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
+    
+def revision(request):
+    subjects = Subject.objects.all()
+    items = Item.objects.all().filter(revision='revision')
+    a = Subject.objects.all().filter(year = 1)
+    b = Subject.objects.all().filter(year = 2)
+    c = Subject.objects.all().filter(year = 3)
+    d = Subject.objects.all().filter(year = 4)
+    g = Subject.objects.all().filter(year = 0)
+    return render(request, 'subjectpages.html', {'items':items, 'subjects': subjects,
+        'a':a, 'b':b, 'c':c, 'd':d, 'g':g
+    })

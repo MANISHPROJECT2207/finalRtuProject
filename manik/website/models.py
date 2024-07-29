@@ -24,6 +24,7 @@ Branches = [
 
 class Subject(models.Model):
     name = models.CharField(max_length=150)
+    year = models.IntegerField(default=0)
     branch = models.CharField(choices=Branches, max_length=30, default="Common")
     # credits = models.DecimalField(default=0.0, )
     
