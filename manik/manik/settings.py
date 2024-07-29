@@ -1,7 +1,5 @@
 
 from pathlib import Path
-from decouple import config
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -13,7 +11,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-m(u&5knukkzuavp*b)^k52gj6z&+$=2lqs-5d84t#65)cr&-90'
 
-DB_PASSWORD = 'Mee1074$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -67,12 +64,15 @@ WSGI_APPLICATION = 'manik.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+nikhil_password = 'Mee1074$'
+manish_password = '5687482582'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME' : 'manik',
         'USER' : 'root', 
-        'PASSWORD' : config('DB_PASSWORD'),
+        'PASSWORD' : nikhil_password,
         'HOST' : 'localhost',
         'PORT' : '3306',
     }
