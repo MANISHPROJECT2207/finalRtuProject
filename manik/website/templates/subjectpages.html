@@ -539,6 +539,7 @@
 
         <!-- my work of project -->
         <body style="background-color: rgb(17, 17, 17); color: whitesmoke">
+
           <div>
             <h2 class="work-sans-fonts m-3 mx-4 text-danger" style="padding-top: 100px;">
               Rtu Syllabus Cheat Sheet - All Topics Details
@@ -547,7 +548,48 @@
               It contains the youtube video lectures of the topics and as well as
               handwritten notes unit wise for all Yearss
             </h4>
-          
+          </div>   
+
+          <!-- // progrees about revision and total watched  -->
+          <div style="padding-right: 20px;">
+            <button class="btn btn-primary float-end mx-lg-2" style="border-color: rgb(50, 50, 50); border-radius: 0.5rem; height: 4rem; background-color: rgb(32, 32, 32);">
+              <h3>Show Revision</h3>
+           </button>
+         <div class="flex-column">
+
+            <div
+            class="m-4"
+            
+              style="background-color: rgb(32, 32, 32); border-radius: 0.5rem; width: 170px;"
+            >
+            
+            <div class="progress" style="height: 4px;  background-color: rgb(50, 50, 50);">
+              <div class="progress-bar" role="progressbar" style="width: 33%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+              <h4
+                class="align-content-center p-2 px-3"
+                style="color: rgb(238, 75, 43); border-radius: 0.5rem;"
+                
+      
+              >
+                Watched : 0/10 
+                <!-- here write done/total by using {{done}}/{{total}}; -->
+                
+              </h4>  
+              
+              
+              
+              
+              
+            </div>
+            
+          </div>
+
+          </div>
+
+
+         <!-- //showing subjects  -->
+
       {% if subjects %}
           {% for subject in subjects %}
           <div
@@ -578,12 +620,12 @@
                 >
                   <thead>
                     <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">title</th>
-                      <th scope="col">link</th>
-                      <th scope="col">description</th>
-                      <th scope="col">likes</th>
-                      <th scope="col">Revision</th>
+                      <th scope="col" class="text-center">#</th>
+                      <th scope="col" class="text-center">title</th>
+                      <th scope="col" class="text-center">link</th>
+                      <th scope="col" class="text-center">description</th>
+                      <th scope="col" class="text-center">likes</th>
+                      <th scope="col" class="text-center">Revision</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -595,11 +637,16 @@
                             
                           </div>
                         </th>
-                        <td>{{item.title}}</td>
-                        <td>{{item.link}}</td>
-                        <td>{{item.description}}</td>
-                        <td>{{item.likes}}</td>
-                        <td>
+                        <td class="text-center">{{item.title}}</td>
+                        <td class="text-center"  style="cursor:pointer;">
+                          <!-- fill url with link -->
+                          <!-- <td>{{item.link}}</td> -->
+                          
+                          <img src="../static/img/youtube-brands-solid.svg"  style="height: 30px;" alt="">
+                        </td>
+                        <td class="text-center">{{item.description}}</td>
+                        <td class="text-center">{{item.likes}}</td>
+                        <td class="text-center">
                           <!-- {{item.status}} -->
                            <!-- now applied item.status in input class after id end where right checked for the revision but if it is not market write nothing -->
                           <div class="form-check form-switch">
