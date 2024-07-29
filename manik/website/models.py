@@ -3,8 +3,12 @@ from django.contrib.auth.models import User
 
 item_status = [
     ("pending","Pending"),
-    ("revision","Revision"),
     ("completed","Completed")
+]
+
+revision_status = [
+    ("not visited", "Not Visited"),
+    ("revision", "Revision")
 ]
 
 Branches = [
@@ -34,7 +38,8 @@ class Item(models.Model):
     video = models.FileField(upload_to='videos/', blank=True, null=True)
     link = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(choices=item_status, max_length=15, default="not visited")
+    status = models.CharField(choices=item_status, max_length=15, default="pending")
+    revision = models.CharField(max_length = 15, choices=revision_status, default="not svisited")
     likes = models.IntegerField(default=0)
     
     class Meta:

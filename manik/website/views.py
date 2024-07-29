@@ -7,6 +7,10 @@ from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 from django.contrib import messages
 from manik.settings import BASE_DIR
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+import json
 
 def about(request):
     return render(request, 'about.html')
@@ -93,3 +97,21 @@ def search(request):
         'subjects': subjects,
         'query': query,
     })
+    
+    
+@csrf_exempt
+@require_POST
+def status_completed(request):
+    
+    data = json.loads(request.body)
+    item_id = data.get('item_id')
+    
+    try:
+        item = Item.objects.get(id=item_id)
+        item.status = "completed"  # Assuming 'completed' is a valid status
+        item.save()
+        return JsonResponse({'success': True})
+    except Item.DoesNotExist:
+        return JsonResponse({'success': False, 'error': 'Item not found'})
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})

@@ -715,7 +715,7 @@
                       <th scope="col">link</th>
                       <th scope="col">description</th>
                       <th scope="col">likes</th>
-                      <th scope="col">status</th>
+                      <th scope="col">Revision</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -723,7 +723,7 @@
                       <tr>
                         <th scope="row">
                           <div class="form-check">
-                            <input class="form-check-input border-3" type="checkbox" value="" id="flexCheckDefault">
+                            <input class="form-check-input border-3 item-status-checkbox" type="checkbox" value="{{ item.id }}" id="flexCheckDefault" {% if item.status == 'completed' %} checked {% endif %}>
                             
                           </div>
                         </th>
@@ -755,6 +755,77 @@
         
       </div>
     </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const checkboxes = document.querySelectorAll('.item-status-checkbox');
+        
+        checkboxes.forEach(checkbox => {
+          checkbox.addEventListener('change', function () {
+            const itemId = this.value;
+            const isChecked = this.checked;
+            
+            if (isChecked) {
+              fetch("{% url 'status_completed' %}", {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({ item_id: itemId })
+              })
+              .then(response => response.json())
+              .then(data => {
+                if (data.success) {
+                  console.log('Item status updated to completed.');
+                } else {
+                  console.error('Failed to update item status.');
+                }
+              })
+              .catch(error => {
+                console.error('Error:', error);
+              });
+            }
+          });
+        });
+      });
+    </script>
+
+    <!-- <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const checkboxes = document.querySelectorAll('.item-status-checkbox');
+        
+        checkboxes.forEach(checkbox => {
+          checkbox.addEventListener('change', function () {
+            const itemId = this.value;
+            const isChecked = this.checked;
+            
+            if (isChecked) {
+              fetch("{% url 'status_completed' %}", {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({ item_id: itemId })
+              })
+              .then(response => response.json())
+              .then(data => {
+                if (data.success) {
+                  console.log('Item status updated to completed.');
+                } else {
+                  console.error('Failed to update item status.');
+                }
+              })
+              .catch(error => {
+                console.error('Error:', error);
+              });
+            }
+          });
+        });
+      });
+    </script> -->
+
     <!--   Core JS Files   -->
     <script src="{% static 'js/core/index.js' %}"></script>
     <script src="{% static 'js/core/jquery-3.7.1.min.js' %}"></script>
