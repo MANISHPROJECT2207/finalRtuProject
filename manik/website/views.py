@@ -29,10 +29,20 @@ def courses(request):
 
 def subjectpages(request):
     items = Item.objects.all()
+    numerator = items.filter(status="completed").count()
+    denominator = items.count()
     subjects = Subject.objects.all()
+    a = Subject.objects.all().filter(year = 1)
+    b = Subject.objects.all().filter(year = 2)
+    c = Subject.objects.all().filter(year = 3)
+    d = Subject.objects.all().filter(year = 4)
+    g = Subject.objects.all().filter(year = 0)
     return render(request, 'subjectpages.html', {
         'items' : items,
-        'subjects' : subjects
+        'subjects' : subjects,
+        'numerator':numerator,
+        'denominator':denominator,
+        'a':a, 'b':b, 'c':c, 'd':d, 'g':g
     })
 
 def contact(request):
@@ -89,12 +99,16 @@ def search(request):
     items = Item.objects.all()
     query = request.GET.get('query', '')
     subjects = Subject.objects.all()
+    numerator = items.filter(status="completed").count()
+    denominator = items.count()
     if query:
         items = items.filter(Q(description__icontains=query) | Q(title__icontains=query))
         subjects = subjects.filter(Q(name__icontains=query) | Q(branch__icontains=query))
     return render(request, 'subjectpages.html', {
         'items': items,
         'subjects': subjects,
+        'numerator':numerator,
+        'denominator':denominator,
         'query': query,
     })
     

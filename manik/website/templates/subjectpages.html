@@ -66,9 +66,9 @@
                 </a>
                 <div class="collapse" id="base">
                   <ul class="nav nav-collapse">
-                    {% for subject in subjects|slice:":5"%}
+                    {% for subject in subjects|slice:":5" %}
                     <li>
-                      <a href="components/avatars.html">
+                      <a href="">
                         <span class="sub-item">{{subject.name}}</span>
                       </a>
                     </li>
@@ -83,14 +83,14 @@
                   <p>1st Year</p>
                   <span class="caret"></span>
                 </a>
-                <div class="collapse" id="base">
+                <div class="collapse" id="first-year">
                   <ul class="nav nav-collapse">
-                    {% for subject in a%}
-                    <li>
-                      <a href="components/avatars.html">
-                        <span class="sub-item">{{subject.name}}</span>
-                      </a>
-                    </li>
+                    {% for subject_1 in a %}
+                      <li>
+                        <a href="">
+                          <span class="sub-item">{{subject_1.name}}</span>
+                        </a>
+                      </li>
                     {% endfor %}
                   </ul>
                 </div>
@@ -101,9 +101,9 @@
                   <p>2nd Year</p>
                   <span class="caret"></span>
                 </a>
-                <div class="collapse" id="base">
+                <div class="collapse" id="">
                   <ul class="nav nav-collapse">
-                    {% for subject in a%}
+                    {% for subject in b %}
                     <li>
                       <a href="components/avatars.html">
                         <span class="sub-item">{{subject.name}}</span>
@@ -119,12 +119,12 @@
                   <p>3rd Year</p>
                   <span class="caret"></span>
                 </a>
-                <div class="collapse" id="base">
+                <div class="collapse" id="">
                   <ul class="nav nav-collapse">
-                    {% for subject in a%}
+                    {% for subject in c %}
                     <li>
                       <a href="components/avatars.html">
-                        <span class="sub-item">{{subject.name}}</span>
+                        <span class="">{{subject.name}}</span>
                       </a>
                     </li>
                     {% endfor %}
@@ -139,7 +139,7 @@
                 </a>
                 <div class="collapse" id="base">
                   <ul class="nav nav-collapse">
-                    {% for subject in a%}
+                    {% for subject in d %}
                     <li>
                       <a href="components/avatars.html">
                         <span class="sub-item">{{subject.name}}</span>
@@ -193,7 +193,7 @@
               >
                 <div class="input-group">
                   <form method="get" action="{% url 'search' %}">
-                    <input type="text" placeholder="Search ..." class="form-control" name="query"/>
+                    <input type="text" placeholder="Search" class="form-control" name="query"/>
                     <div class="input-group-prepend">
                       <button type="submit" class="btn btn-search pe-1">
                         <i class="fa fa-search search-icon"></i>
@@ -204,31 +204,7 @@
               </nav>
 
               <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
-                <li
-                  class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none"
-                >
-                  <a
-                    class="nav-link dropdown-toggle"
-                    data-bs-toggle="dropdown"
-                    href="#"
-                    role="button"
-                    aria-expanded="false"
-                    aria-haspopup="true"
-                  >
-                    <i class="fa fa-search"></i>
-                  </a>
-                  <ul class="dropdown-menu dropdown-search animated fadeIn">
-                    <form class="navbar-left navbar-form nav-search">
-                      <div class="input-group">
-                        <input
-                          type="text"
-                          placeholder="Search ..."
-                          class="form-control"
-                        />
-                      </div>
-                    </form>
-                  </ul>
-                </li>
+                
                 <li class="nav-item topbar-icon dropdown hidden-caret">
                   <a
                     class="nav-link dropdown-toggle"
@@ -569,7 +545,7 @@
               <h4
                 class="align-content-center p-2 px-3"
                 style="color: rgb(238, 75, 43); border-radius: 0.5rem;">
-                Watched : 0/10 
+                Watched : {{numerator}}/{{denominator}}
               </h4>  
             </div>
           </div>
