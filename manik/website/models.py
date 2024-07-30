@@ -26,7 +26,7 @@ class Subject(models.Model):
     name = models.CharField(max_length=150)
     year = models.IntegerField(default=0)
     branch = models.CharField(choices=Branches, max_length=30, default="Common")
-    # credits = models.DecimalField(default=0.0, )
+    # credits = models.DecimalField(default=0.0)
     
     def __str__(self):
         return (f"{self.name}, {self.branch}")
@@ -40,7 +40,7 @@ class Item(models.Model):
     link = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(choices=item_status, max_length=15, default="pending")
-    revision = models.CharField(max_length = 15, choices=revision_status, default="not svisited")
+    revision = models.BooleanField(default=False)
     likes = models.IntegerField(default=0)
     
     class Meta:

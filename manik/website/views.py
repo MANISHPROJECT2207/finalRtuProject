@@ -102,13 +102,13 @@ def search(request):
 @csrf_exempt
 @require_POST
 def status_completed(request):
-    
     data = json.loads(request.body)
     item_id = data.get('item_id')
+    status = data.get('status')
     
     try:
         item = Item.objects.get(id=item_id)
-        item.status = "completed"  # Assuming 'completed' is a valid status
+        item.status = "completed" if status else 'not_completed'
         item.save()
         return JsonResponse({'success': True})
     except Item.DoesNotExist:
@@ -116,14 +116,36 @@ def status_completed(request):
     except Exception as e:
         return JsonResponse({'success': False, 'error': str(e)})
     
+@csrf_exempt
+@require_POST
 def revision(request):
+    data = json.loads(request.body)
+    item_id = data.get('item_id')
+    rev = data.get('revision')
+
+    try:
+        item = Item.objects.get(id=item_id)
+        print(f"Before: Item {item_id} revision={item.revision}")
+        item.revision = rev
+        item.save()
+        print(f"After: Item {item_id} revision={item.revision}")
+        return JsonResponse({'success': True})
+    except Item.DoesNotExist:
+        print(f"Item {item_id} not found")
+        return JsonResponse({'success': False, 'error': 'Item not found'})
+    except Exception as e:
+        print(f"Error: {e}")
+        return JsonResponse({'success': False, 'error': str(e)})
+
+    
+def show_revision(request):
     subjects = Subject.objects.all()
-    items = Item.objects.all().filter(revision='revision')
+    items = Item.objects.all().filter(revision=True)
     a = Subject.objects.all().filter(year = 1)
     b = Subject.objects.all().filter(year = 2)
     c = Subject.objects.all().filter(year = 3)
     d = Subject.objects.all().filter(year = 4)
     g = Subject.objects.all().filter(year = 0)
-    return render(request, 'subjectpages.html', {'items':items, 'subjects': subjects,
+    return render(request, 'show_revision.html', {'items':items, 'subjects': subjects,
         'a':a, 'b':b, 'c':c, 'd':d, 'g':g
     })

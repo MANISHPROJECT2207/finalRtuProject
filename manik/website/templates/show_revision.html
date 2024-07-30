@@ -613,25 +613,26 @@
                   </thead>
                   <tbody>
                     {% for item in subject.items.all %}
-                      <tr>
-                        <th scope="row">
-                          <div class="form-check">
-                            <input class="form-check-input border-3 item-status-checkbox" type="checkbox" value="{{ item.id }}" id="flexCheckDefault" {% if item.status == 'completed' %} checked {% endif %}>
-                            
-                          </div>
-                        </th>
-                        <td class="text-center">{{item.title}}</td>
-                        <td class="text-center"  style="cursor:pointer;">
-                          <a href=" {{item.link}} "><img src="../static/img/youtube-brands-solid.svg"  style="height: 30px;" alt=""></a>
-                        </td>
-                        <td class="text-center">{{item.description}}</td>
-                        <td class="text-center">{{item.likes}}</td>
-                        <td class="text-center">
-                          <div class="form-check form-switch">
-                            <input class="form-check-input revision" type="checkbox" id="flexSwitchCheckDefault" value="{{ item.id }}" {% if item.revision %} checked {% endif %}>
-                          </div>
-                        </td>
-                      </tr>
+                        {% if item.revision %}
+                            <tr>
+                                <th scope="row">
+                                <div class="form-check">
+                                    <input class="form-check-input border-3 item-status-checkbox" type="checkbox" value="{{ item.id }}" id="flexCheckDefault" {% if item.status == 'completed' %} checked {% endif %}>
+                                </div>
+                                </th>
+                                <td class="text-center">{{item.title}}</td>
+                                <td class="text-center"  style="cursor:pointer;">
+                                <a href=" {{item.link}} "><img src="../static/img/youtube-brands-solid.svg"  style="height: 30px;" alt=""></a>
+                                </td>
+                                <td class="text-center">{{item.description}}</td>
+                                <td class="text-center">{{item.likes}}</td>
+                                <td class="text-center">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input revision" type="checkbox" id="flexSwitchCheckDefault" value="{{ item.id }}" {% if item.revision %} checked {% endif %}>
+                                </div>
+                                </td>
+                            </tr>
+                        {% endif %}
                     {% endfor %}
                   </tbody>
                 </table>
@@ -711,42 +712,20 @@
     </script>
 
    
-
-    <!--   Core JS Files   -->
     <script src="{% static 'js/core/index.js' %}"></script>
     <script src="{% static 'js/core/jquery-3.7.1.min.js' %}"></script>
     <script src="{% static 'js/core/popper.min.js' %}"></script>
     <script src="{% static 'js/core/bootstrap.min.js' %}"></script>
-
-    <!-- jQuery Scrollbar -->
     <script src="{% static 'js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %}"></script>
-
-    <!-- Chart JS -->
     <script src="{% static 'js/plugin/chart.js/chart.min.js' %}"></script>
-
-    <!-- jQuery Sparkline -->
     <script src="{% static 'js/plugin/jquery.sparkline/jquery.sparkline.min.js' %}"></script>
-
-    <!-- Chart Circle -->
     <script src="{% static 'js/plugin/chart-circle/circles.min.js' %}"></script>
-
-    <!-- Datatables -->
     <script src="{% static 'js/plugin/datatables/datatables.min.js' %}"></script>
-
-    <!-- Bootstrap Notify -->
     <script src="{% static 'js/plugin/bootstrap-notify/bootstrap-notify.min.js' %}"></script>
-
-    <!-- jQuery Vector Maps -->
     <script src="{% static 'js/plugin/jsvectormap/jsvectormap.min.js' %}"></script>
     <script src="{% static 'js/plugin/jsvectormap/world.js' %}"></script>
-
-    <!-- Google Maps Plugin -->
     <script src="{% static 'js/plugin/gmaps/gmaps.js' %}"></script>
-
-    <!-- Sweet Alert -->
     <script src="{% static 'js/plugin/sweetalert/sweetalert.min.js' %}"></script>
-
-    <!-- Kaiadmin JS -->
     <script src="{% static 'js/kaiadmin.min.js' %}"></script>
 
 {% endblock %}

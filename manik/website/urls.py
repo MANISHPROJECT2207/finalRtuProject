@@ -7,7 +7,7 @@ urlpatterns = [
     path('_404_error/', views._404_error, name='_404_error'),
     path('contact/', views.contact, name='contact'),
     path('courses/', views.courses, name='courses'),
-    path('subjectpages/', views.subjectpages, name='subjectpages'),
+    path('subjects/', views.subjectpages, name='subjectpages'),
     path('testimonial/', views.testimonial, name='testimonial'),
     path('search/', views.search, name = 'search'),
     path('signin/', views.signin, name='signin'),
@@ -15,4 +15,5 @@ urlpatterns = [
     path('logout/', views.logout_user, name='logout_user'),
     path('status_completed/', views.status_completed, name='status_completed'),
     path('revision/', views.revision, name='revision'),
+    path('subjects/show_revision/', views.show_revision, name='show_revision'),
 ]
