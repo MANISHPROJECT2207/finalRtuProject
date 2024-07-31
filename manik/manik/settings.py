@@ -18,7 +18,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 mysqlDBPassword = ""
-file_path = r'C:\Users\Nikhil\Desktop\venv\developer.py.txt'
+file_path = r'../../developer.py.txt'
 
 with open(file_path, 'r') as file:
     content = file.read()
