@@ -163,3 +163,24 @@ def show_revision(request):
     return render(request, 'show_revision.html', {'items':items, 'subjects': subjects,
         'a':a, 'b':b, 'c':c, 'd':d, 'g':g
     })
+    
+def subject_desc(request, sub_name):
+    subject = Subject.objects.get(name=sub_name)
+    subjects = Subject.objects.all()
+    if subject : items = Item.objects.all().filter(subject=subject)
+    numerator = items.filter(status="completed").count()
+    denominator = items.count()
+    subjects = Subject.objects.all()
+    a = Subject.objects.all().filter(year = 1)
+    b = Subject.objects.all().filter(year = 2)
+    c = Subject.objects.all().filter(year = 3)
+    d = Subject.objects.all().filter(year = 4)
+    g = Subject.objects.all().filter(year = 0)
+    return render(request, 'subject_desc.html', {
+        'subject':subject,
+        'items':items,
+        'numerator':numerator,
+        'denominator':denominator,
+        'subjects':subjects,
+        'a':a, 'b':b, 'c':c, 'd':d, 'g':g
+        })

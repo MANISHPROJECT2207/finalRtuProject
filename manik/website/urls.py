@@ -16,4 +16,5 @@ urlpatterns = [
     path('status_completed/', views.status_completed, name='status_completed'),
     path('revision/', views.revision, name='revision'),
     path('subjects/show_revision/', views.show_revision, name='show_revision'),
+    path('subjects/<str:sub_name>/', views.subject_desc, name='subject_desc'),
 ]
