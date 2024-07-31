@@ -17,6 +17,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+mysqlDBPassword = ""
+file_path = r'C:\Users\Nikhil\Desktop\venv\developer.py.txt'
+
+with open(file_path, 'r') as file:
+    content = file.read()
+    mysqlDBPassword = content
+
 
 # Application definition
 
@@ -64,15 +71,13 @@ WSGI_APPLICATION = 'manik.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-nikhil_password = 'Mee1074$'
-manish_password = '5687482582'
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME' : 'manik',
         'USER' : 'root', 
-        'PASSWORD' : nikhil_password,
+        'PASSWORD' : mysqlDBPassword,
         'HOST' : 'localhost',
         'PORT' : '3306',
     }
