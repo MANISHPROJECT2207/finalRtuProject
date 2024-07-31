@@ -35,28 +35,23 @@
         <div class="sidebar-wrapper scrollbar scrollbar-inner">
           <div class="sidebar-content">
             <ul class="nav nav-secondary">
-              <li class="nav-item active">
-                <a
-                  data-bs-toggle="collapse"
-                  href="#dashboard"
-                  class="collapsed"
-                  aria-expanded="false"
-                >
+
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#base">
                   <i class="fas fa-home"></i>
                   <p>Dashboard</p>
                   <span class="caret"></span>
                 </a>
-                <div class="collapse" id="dashboard">
+                <div class="collapse" id="base1">
                   <ul class="nav nav-collapse">
                     <li>
-                      <a href="../demo1/index.html">
-                        <span class="sub-item">Dashboard 1</span>
+                      <a href="">
+                        <span class="sub-item">Kuch bhi</span>
                       </a>
                     </li>
                   </ul>
                 </div>
-              </li>
-              
+              </li> 
 
               <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#base">
@@ -64,7 +59,7 @@
                   <p>Hot Topics</p>
                   <span class="caret"></span>
                 </a>
-                <div class="collapse" id="base">
+                <div class="collapse" id="base1">
                   <ul class="nav nav-collapse">
                     {% for subject in subjects|slice:":5" %}
                     <li>
@@ -78,12 +73,12 @@
               </li>
 
               <li class="nav-item">
-                <a data-bs-toggle="collapse" href="">
+                <a data-bs-toggle="collapse" href="#base">
                   <i class="fas fa-dice-one"></i>
                   <p>1st Year</p>
                   <span class="caret"></span>
                 </a>
-                <div class="collapse" id="first-year">
+                <div class="collapse" id="base1">
                   <ul class="nav nav-collapse">
                     {% for subject_1 in a %}
                       <li>
@@ -96,12 +91,12 @@
                 </div>
               </li>
               <li class="nav-item">
-                <a data-bs-toggle="collapse" href="">
+                <a data-bs-toggle="collapse" href="#base">
                   <i class="fas fa-dice-two"></i>
                   <p>2nd Year</p>
                   <span class="caret"></span>
                 </a>
-                <div class="collapse" id="">
+                <div class="collapse" id="base1">
                   <ul class="nav nav-collapse">
                     {% for subject in b %}
                     <li>
@@ -114,12 +109,12 @@
                 </div>
               </li>
               <li class="nav-item">
-                <a data-bs-toggle="collapse" href="">
+                <a data-bs-toggle="collapse" href="#base">
                   <i class="fas fa-dice-three"></i>
                   <p>3rd Year</p>
                   <span class="caret"></span>
                 </a>
-                <div class="collapse" id="">
+                <div class="collapse" id="base1">
                   <ul class="nav nav-collapse">
                     {% for subject in c %}
                     <li>
@@ -132,12 +127,12 @@
                 </div>
               </li>
               <li class="nav-item">
-                <a data-bs-toggle="collapse" href="">
+                <a data-bs-toggle="collapse" href="#base">
                   <i class="fas fa-dice-four"></i>
                   <p>4th Year</p>
                   <span class="caret"></span>
                 </a>
-                <div class="collapse" id="base">
+                <div class="collapse" id="base1">
                   <ul class="nav nav-collapse">
                     {% for subject in d %}
                     <li>
@@ -684,6 +679,35 @@
             });
         });
     });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        // Select all nav-item elements
+        const navItems = document.querySelectorAll('.nav-item');
+      
+        navItems.forEach(item => {
+          // Find the link that toggles the collapse
+          const toggleLink = item.querySelector('[data-bs-toggle="collapse"]');
+      
+          if (toggleLink) {
+            toggleLink.addEventListener('click', function(event) {
+              event.preventDefault();
+      
+              // Find the collapse div within the current nav-item
+              const collapseDiv = item.querySelector('.collapse');
+      
+              if (collapseDiv) {
+                // Toggle the 'show' class to collapse/expand the div
+                collapseDiv.classList.toggle('show');
+              }
+      
+              // Optionally, you can add active class to the parent nav-item for styling
+              item.classList.toggle('active');
+            });
+          }
+        });
+      });
     </script>
 
    
