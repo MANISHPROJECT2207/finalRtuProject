@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.contrib import messages
 from manik.settings import BASE_DIR
 from django.http import JsonResponse
@@ -153,7 +153,9 @@ def revision(request):
 
     
 def show_revision(request):
-    subjects = Subject.objects.all()
+    subjects = Subject.objects.annotate(
+        revision_count=Count('items', filter=Q(items__revision=True))
+    ).filter(revision_count__gt=0)
     items = Item.objects.all().filter(revision=True)
     a = Subject.objects.all().filter(year = 1)
     b = Subject.objects.all().filter(year = 2)
@@ -211,3 +213,26 @@ def like_item(request):
         return JsonResponse({'success': True, 'likes': item.likes})
     except Item.DoesNotExist:
         return JsonResponse({'success': False, 'error': 'Item not found'})
+    
+def year(request, year):
+    subjects = Subject.objects.all().filter(year=year)
+    items = Item.objects.filter(subject__in=subjects)
+    numerator = items.filter(status="completed").count()
+    denominator = items.count()
+    
+    print(type(subjects))
+    
+    a = Subject.objects.all().filter(year = 1)
+    b = Subject.objects.all().filter(year = 2)
+    c = Subject.objects.all().filter(year = 3)
+    d = Subject.objects.all().filter(year = 4)
+    g = Subject.objects.all().filter(year = 0)
+    return render(request, 'year.html', {
+        'subjects':subjects,
+        'items':items,
+        'numerator':numerator,
+        'denominator':denominator,
+        'subjects':subjects,
+        'a':a, 'b':b, 'c':c, 'd':d, 'g':g,
+        'year':year
+        })

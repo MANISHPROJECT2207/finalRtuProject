@@ -717,34 +717,7 @@
     
     </script>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        // Select all nav-item elements
-        const navItems = document.querySelectorAll('.nav-item');
-      
-        navItems.forEach(item => {
-          // Find the link that toggles the collapse
-          const toggleLink = item.querySelector('[data-bs-toggle="collapse"]');
-      
-          if (toggleLink) {
-            toggleLink.addEventListener('click', function(event) {
-              event.preventDefault();
-      
-              // Find the collapse div within the current nav-item
-              const collapseDiv = item.querySelector('.collapse');
-      
-              if (collapseDiv) {
-                // Toggle the 'show' class to collapse/expand the div
-                collapseDiv.classList.toggle('show');
-              }
-      
-              // Optionally, you can add active class to the parent nav-item for styling
-              item.classList.toggle('active');
-            });
-          }
-        });
-      });
-    </script>
+   
 
    
 
