@@ -184,3 +184,30 @@ def subject_desc(request, sub_name):
         'subjects':subjects,
         'a':a, 'b':b, 'c':c, 'd':d, 'g':g
         })
+    
+
+@login_required
+@require_POST
+@csrf_exempt
+def like_item(request):
+    import json
+    data = json.loads(request.body)
+    item_id = data.get('item_id')
+    liked = data.get('liked')
+
+    try:
+        item = Item.objects.get(id=item_id)
+        user = request.user
+
+        if liked:
+            item.likes += 1
+            item.liked_by.add(user)
+        else:
+            item.likes -= 1
+            item.liked_by.remove(user)
+        
+        item.save()
+
+        return JsonResponse({'success': True, 'likes': item.likes})
+    except Item.DoesNotExist:
+        return JsonResponse({'success': False, 'error': 'Item not found'})

@@ -42,6 +42,7 @@ class Item(models.Model):
     status = models.CharField(choices=item_status, max_length=15, default="pending")
     revision = models.BooleanField(default=False)
     likes = models.IntegerField(default=0)
+    liked_by = models.ManyToManyField(User, related_name='liked_items', blank=True)
     
     class Meta:
         ordering = ('created_at',)

@@ -587,8 +587,7 @@
                       <tr>
                         <th scope="row">
                           <div class="form-check">
-                            <input class="form-check-input border-3 item-status-checkbox" type="checkbox" value="{{ item.id }}" id="flexCheckDefault" {% if item.status == 'completed' %} checked {% endif %}>
-                            
+                            <input class="form-check-input border-3 item-status-checkbox" type="checkbox" value="{{ item.id }}" id="flexCheckDefault" {% if item.status == 'completed' %} checked {% endif %}>   
                           </div>
                         </th>
                         <td class="text-center">{{item.title}}</td>
@@ -596,7 +595,12 @@
                           <a href=" {{item.link}} "><img src="../static/img/youtube-brands-solid.svg"  style="height: 30px;" alt=""></a>
                         </td>
                         <td class="text-center">{{item.description}}</td>
-                        <td class="text-center">{{item.likes}}</td>
+                        <td class="text-center">
+                          <span class="like-btn" data-item-id="{{ item.id }}">
+                              <i class="fas fa-thumbs-up {% if request.user in item.liked_by.all %} liked{% endif %}"></i>
+                          </span> 
+                          <span class="like-count">{{item.likes}}</span>
+                      </td>
                         <td class="text-center">
                           <div class="form-check form-switch">
                             <input class="form-check-input revision" type="checkbox" id="flexSwitchCheckDefault" value="{{ item.id }}" {% if item.revision %} checked {% endif %}>
@@ -621,15 +625,16 @@
     </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
+      document.addEventListener('DOMContentLoaded', function () {
         const statusCheckboxes = document.querySelectorAll('.item-status-checkbox');
         const revisionCheckboxes = document.querySelectorAll('.revision');
-
+        const likeButtons = document.querySelectorAll('.like-btn');
+    
         statusCheckboxes.forEach(checkbox => {
             checkbox.addEventListener('change', function () {
                 const itemId = this.value;
                 const isChecked = this.checked;
-
+    
                 fetch("{% url 'status_completed' %}", {
                     method: 'POST',
                     headers: {
@@ -651,12 +656,12 @@
                 });
             });
         });
-
+    
         revisionCheckboxes.forEach(checkbox => {
             checkbox.addEventListener('change', function () {
                 const itemId = this.value;
                 const isChecked = this.checked;
-
+    
                 fetch("{% url 'revision' %}", {
                     method: 'POST',
                     headers: {
@@ -678,7 +683,38 @@
                 });
             });
         });
+    
+        likeButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const itemId = this.getAttribute('data-item-id');
+                const icon = this.querySelector('i');
+                const likeCountElement = this.nextElementSibling;
+                const liked = icon.classList.contains('liked');
+    
+                fetch("{% url 'like_item' %}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: JSON.stringify({ item_id: itemId, liked: !liked })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        icon.classList.toggle('liked', !liked);
+                        likeCountElement.textContent = data.likes;
+                    } else {
+                        console.error('Failed to update like status.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+        });
     });
+    
     </script>
 
     <script>
