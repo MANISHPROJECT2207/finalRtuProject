@@ -16,7 +16,8 @@ def about(request):
     return render(request, 'about.html')
 
 def home(request):
-    return render(request, 'index.html')
+    top_items = Item.objects.order_by('-likes')[:3]
+    return render(request, 'index.html', {'top_items':top_items})
 
 def testimonial(request):
     return render(request, 'testimonial.html')
@@ -50,7 +51,7 @@ def contact(request):
 
 def signin(request):
     if request.user.is_authenticated:
-        return render(request, 'index.html')
+        return redirect('home')
     if request.method == 'POST':
         x = request.POST.get('ue')
         password = request.POST.get('password')
