@@ -16,8 +16,8 @@ def about(request):
     return render(request, 'about.html')
 
 def home(request):
-    top_items = Item.objects.order_by('-likes')[:3]
-    return render(request, 'index.html', {'top_items':top_items})
+    top_subjects = Subject.objects.order_by('-views')[:3]
+    return render(request, 'index.html', {'top_subjects':top_subjects})
 
 def testimonial(request):
     return render(request, 'testimonial.html')
