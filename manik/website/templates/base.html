@@ -79,6 +79,20 @@
             color: white;
             padding: 20px 0;
         }
+        .custom-icon {
+            color: gray;
+            margin-top:8px;
+            margin-right:8px;
+            font-size: 24px;
+        }
+        
+        .icon-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -102,11 +116,75 @@
           </div>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="{% url 'home' %}" class="nav-item nav-link mt-2">Home</a>
                 <a href="{% url 'about' %}" class="nav-item nav-link mt-2">About</a>
-                <a href="{% url 'courses' %}" class="nav-item nav-link mt-2">Courses</a>
                 <a href="{% url 'subjectpages' %}" class="nav-item nav-link mt-2">Subjects</a>
-                <a href="{% url 'contact' %}" class="nav-item nav-link mt-2">Contact</a>
+
+                <li class="nav-item topbar-icon dropdown hidden-caret">
+                    <a class="" data-bs-toggle="dropdown" href="#">
+                        <i class="fas fa-layer-group fa-2x custom-icon"></i>
+                    </a>
+                    <div class="dropdown-menu quick-actions animated fadeIn">
+                        <div class="quick-actions-header">
+                            <span class="title mb-1">Quick Actions</span>
+                            <span class="subtitle op-7">Shortcuts</span>
+                        </div>
+                        <div class="quick-actions-scroll scrollbar-outer">
+                            <div class="quick-actions-items">
+                                <div class="row m-0">
+                                    <a class="col-6 col-md-4 p-0" href="#">
+                                        <div class="quick-actions-item">
+                                            <div class="avatar-item bg-danger rounded-circle icon-container">
+                                                <i class="far fa-calendar-alt fa-2x"></i>
+                                            </div>
+                                            <span class="text">Calendar</span>
+                                        </div>
+                                    </a>
+                                    <a class="col-6 col-md-4 p-0" href="#">
+                                        <div class="quick-actions-item">
+                                            <div class="avatar-item bg-warning rounded-circle icon-container">
+                                                <i class="fas fa-map fa-2x "></i>
+                                            </div>
+                                            <span class="text">Maps</span>
+                                        </div>
+                                    </a>
+                                    <a class="col-6 col-md-4 p-0" href="#">
+                                        <div class="quick-actions-item">
+                                            <div class="avatar-item bg-info rounded-circle icon-container">
+                                                <i class="fas fa-file-excel fa-2x "></i>
+                                            </div>
+                                            <span class="text">Reports</span>
+                                        </div>
+                                    </a>
+                                    <a class="col-6 col-md-4 p-0" href="#">
+                                        <div class="quick-actions-item">
+                                            <div class="avatar-item bg-success rounded-circle icon-container">
+                                                <i class="fas fa-envelope fa-2x "></i>
+                                            </div>
+                                            <span class="text">Emails</span>
+                                        </div>
+                                    </a>
+                                    <a class="col-6 col-md-4 p-0" href="#">
+                                        <div class="quick-actions-item">
+                                            <div class="avatar-item bg-primary rounded-circle icon-container">
+                                                <i class="fas fa-file-invoice-dollar fa-2x "></i>
+                                            </div>
+                                            <span class="text">Invoice</span>
+                                        </div>
+                                    </a>
+                                    <a class="col-6 col-md-4 p-0" href="#">
+                                        <div class="quick-actions-item">
+                                            <div class="avatar-item bg-secondary rounded-circle icon-container">
+                                                <i class="fas fa-credit-card fa-2x"></i>
+                                            </div>
+                                            <span class="text">Payments</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+  
 
                 <li class="nav-item topbar-user dropdown hidden-caret" style="margin-right:10px;">
                     <a
