@@ -17,7 +17,8 @@ def about(request):
 
 def home(request):
     top_subjects = Subject.objects.order_by('-views')[:3]
-    return render(request, 'index.html', {'top_subjects':top_subjects})
+    total_users = User.objects.all().count()
+    return render(request, 'index.html', {'top_subjects':top_subjects, 'total_users':total_users})
 
 def testimonial(request):
     return render(request, 'testimonial.html')
