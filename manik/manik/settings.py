@@ -13,16 +13,9 @@ SECRET_KEY = 'django-insecure-m(u&5knukkzuavp*b)^k52gj6z&+$=2lqs-5d84t#65)cr&-90
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
-
-mysqlDBPassword = ""
-file_path = r'../../developer.py.txt'
-
-with open(file_path, 'r') as file:
-    content = file.read()
-    mysqlDBPassword = content
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -77,7 +70,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME' : 'manik',
         'USER' : 'root', 
-        'PASSWORD' : mysqlDBPassword,
+        'PASSWORD' : 'Mee1074$',
         'HOST' : 'localhost',
         'PORT' : '3306',
     }
